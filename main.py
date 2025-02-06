@@ -34,11 +34,12 @@ LETTERS_MAPPING = {
 SKILLS = [
     "Стремительный прыжок", "Электрический выстрел",
     "Ледяной удар", "Стремительный удар", "Кислотный взгляд",
-    "Тайный побег", "Ледяной выстрел", "Огненный заряд"
+    "Тайный побег", "Ледяной выстрел", "Огненный заряд",
 ]
 
 FAKE = Faker("ru_RU")
 
+os.makedirs(PATH, exist_ok=True)
 
 def main():
     for person in range(0, 10):
@@ -68,9 +69,6 @@ def main():
 
         file_operations.render_template("charsheet.svg", "{}{} {}.svg".format(
             PATH, context['first_name'], context['last_name']), context)
-
-
-os.makedirs(PATH, exist_ok=True)
 
 
 if __name__ == '__main__':  
