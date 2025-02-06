@@ -32,12 +32,12 @@ LETTERS_MAPPING = {
 }
 
 SKILLS = [
-            "Стремительный прыжок", "Электрический выстрел",
-            "Ледяной удар", "Стремительный удар", "Кислотный взгляд",
-            "Тайный побег", "Ледяной выстрел", "Огненный заряд"
-        ]
+    "Стремительный прыжок", "Электрический выстрел",
+    "Ледяной удар", "Стремительный удар", "Кислотный взгляд",
+    "Тайный побег", "Ледяной выстрел", "Огненный заряд"
+]
 
-fake = Faker("ru_RU")
+FAKE = Faker("ru_RU")
 
 
 def main():
@@ -52,24 +52,26 @@ def main():
             runic_skills.append(skills_not_repeat[index])
 
         context = {
-                    "first_name": fake.first_name(),
-                    "last_name": fake.last_name(),
-                    "job": fake.job(),
-                    "town": fake.city(),
-                    "strength": random.randint(3, 18),
-                    "agility": random.randint(3, 18),
-                    "endurance": random.randint(3, 18),
-                    "intelligence": random.randint(3, 18),
-                    "luck": random.randint(3, 18),
-                    "skill_1": skills_not_repeat[0],
-                    "skill_2": skills_not_repeat[1],
-                    "skill_3": skills_not_repeat[2],
-                }
+            "first_name": FAKE.first_name(),
+            "last_name": FAKE.last_name(),
+            "job": FAKE.job(),
+            "town": FAKE.city(),
+            "strength": random.randint(3, 18),
+            "agility": random.randint(3, 18),
+            "endurance": random.randint(3, 18),
+            "intelligence": random.randint(3, 18),
+            "luck": random.randint(3, 18),
+            "skill_1": skills_not_repeat[0],
+            "skill_2": skills_not_repeat[1],
+            "skill_3": skills_not_repeat[2],
+        }
 
         file_operations.render_template("charsheet.svg", "{}{} {}.svg".format(
             PATH, context['first_name'], context['last_name']), context)
 
 
-if __name__ == '__main__':
-    os.makedirs(PATH, exist_ok=True)
+os.makedirs(PATH, exist_ok=True)
+
+
+if __name__ == '__main__':  
     main()
